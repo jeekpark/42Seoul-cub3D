@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"_int8_t.h": "c",
+		"atomic": "cpp",
+		"cstdint": "cpp",
+		"float.h": "c"
+	}
+}

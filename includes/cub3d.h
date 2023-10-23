@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunwoo-jin <sunwoo-jin@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:06:18 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/09/26 20:50:15 by sunwoo-jin       ###   ########.fr       */
+/*   Updated: 2023/10/23 21:21:34 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,6 @@
 # define DISTANCE_UNIT 0.05
 # define MOUSE_SPEED 0.08
 
-typedef struct s_listNode
-{
-	struct listNode	*next;
-	int				y;
-	int				x;
-}	t_node;
-
 typedef struct s_pixel
 {
 	int				x;
@@ -69,9 +62,12 @@ typedef struct s_vector
 	double			y;
 }	t_vector;
 
+typedef t_pixel		t_vec_int32;
+typedef t_vector	t_vec_flt64;
+
 typedef struct s_check_parse
 {
-	size_t			north;
+	size_t			north; 
 	size_t			south;
 	size_t			west;
 	size_t			east;
@@ -170,6 +166,7 @@ typedef struct s_game
 }	t_game;
 
 /* srcs/hook/ */
+
 int			key_press(int keycode, t_game *game);
 int			key_release(int keycode, t_game *game);
 int			mouse_move(int x, int y, t_game *game);
@@ -239,7 +236,8 @@ double		map_double(double num, double in_max, double out_max);
 int			map_int(int num, int in_max, int out_max);
 
 /* srcs/utils_ray_casting/ */
+
 double		ray_casting(t_game *game, t_ray *ray, t_vector pos, t_vector dir);
 void		init_ray_casting(t_ray *ray, t_vector pos, t_vector dir);
 
-#endif
+#endif /* cub3d.h */
