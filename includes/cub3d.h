@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:06:18 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/23 21:21:34 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:21:32 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 # define DISTANCE_UNIT 0.05
 # define MOUSE_SPEED 0.08
 
+
+
 typedef struct s_pixel
 {
 	int				x;
@@ -62,8 +64,7 @@ typedef struct s_vector
 	double			y;
 }	t_vector;
 
-typedef t_pixel		t_vec_int32;
-typedef t_vector	t_vec_flt64;
+
 
 typedef struct s_check_parse
 {
@@ -165,6 +166,12 @@ typedef struct s_game
 	t_pixel			mouse_cursor;
 }	t_game;
 
+
+typedef int			t_bool;
+typedef t_bool		t_err;
+typedef t_pixel		t_vec_int32;
+typedef t_vector	t_vec_flt64;
+
 /* srcs/hook/ */
 
 int			key_press(int keycode, t_game *game);
@@ -213,14 +220,23 @@ void		free_game(t_game *game);
 int			destroy_instance(t_game *game);
 
 /* srcs/utils_draw/ */
-void		draw_pixel_to_img(t_component *component,
-				t_pixel pixel, int color);
-void		draw_line_to_img(t_component *component,
-				t_pixel first, t_pixel second, int color);
-void		draw_rect_to_img(t_component *component,
-				t_pixel first, t_pixel second, int color);
-int			pipette_color_from_img(t_component *component,
-				t_pixel pixel);
+void		draw_pixel_to_img(
+	t_component *component,
+	t_pixel pixel,
+	int color);
+void		draw_line_to_img(
+	t_component *component,
+	t_pixel first,
+	t_pixel second,
+	int color);
+void		draw_rect_to_img(
+	t_component *component,
+	t_pixel first,
+	t_pixel second,
+	int color);
+int			pipette_color_from_img(
+	t_component *component,
+	t_pixel pixel);
 int			rgb8_to_int(int r, int g, int b);
 t_pixel		set_pixel(int x, int y);
 
@@ -236,8 +252,14 @@ double		map_double(double num, double in_max, double out_max);
 int			map_int(int num, int in_max, int out_max);
 
 /* srcs/utils_ray_casting/ */
-
 double		ray_casting(t_game *game, t_ray *ray, t_vector pos, t_vector dir);
 void		init_ray_casting(t_ray *ray, t_vector pos, t_vector dir);
+
+/* srcs/utils_window/ */
+t_err	init_window(
+	void **mlx,
+	void **win,
+	t_pixel win_size,
+	char *title);
 
 #endif /* cub3d.h */

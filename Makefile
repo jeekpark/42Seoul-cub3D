@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/18 18:58:34 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/23 20:40:30 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/30 17:21:07 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRCS			=	srcs/main.c									\
 					srcs/utils_math/map_double.c				\
 					srcs/utils_ray_casting/ray_casting.c		\
 					srcs/utils_ray_casting/init_ray_casting.c	\
+					srcs/utils_window/init_window.c
 
 OBJS			=	$(SRCS:.c=.o)
 

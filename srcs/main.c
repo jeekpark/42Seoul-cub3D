@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunwoo-jin <sunwoo-jin@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:06:21 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/09/26 21:57:55 by sunwoo-jin       ###   ########.fr       */
+/*   Updated: 2023/10/30 17:20:38 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game	*game;
 
-	if (init_cub3d(&game, argc, argv) == FAILURE)
+	
+	game = ft_calloc(sizeof(t_game), 1);
+	if (game == NULL)
+		return (EXIT_FAILURE);
+	if (init_window(&game->mlx, &game->win, set_pixel(1920, 1080), "cub3D")
+		== FALSE)
 	{
-		printf("Error\nInit failed\n");
-		exit_game(&game);
+		ft_putstr_fd("Error\ninit_window(): Returns FALSE", STDERR_FILENO);
+		exit_game(game);
 		return (EXIT_FAILURE);
 	}
-	mlx_loop(game.mlx);
+	mlx_loop(game->mlx);
 	return (EXIT_SUCCESS);
 }
