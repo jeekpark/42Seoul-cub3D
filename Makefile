@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/18 18:58:34 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/30 20:11:57 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/30 23:56:17 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,10 @@ SRCS			=	srcs/main.c									\
 					srcs/utils_draw/pipette_color_from_img.c	\
 					srcs/utils_draw/set_pixel.c					\
 					srcs/utils_draw/rgb8_to_int.c				\
+					srcs/utils_list/list_init.c					\
+					srcs/utils_list/list_push_back.c			\
+					srcs/utils_list/list_del_all_node.c			\
+					srcs/utils_list/list_del_one_node.c			\
 					srcs/utils_image/init_component.c			\
 					srcs/utils_math/add_vector.c				\
 					srcs/utils_math/deg_to_rad.c				\

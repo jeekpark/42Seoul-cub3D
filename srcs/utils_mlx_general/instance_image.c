@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_push_back.c                                   :+:      :+:    :+:   */
+/*   instance_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 22:04:23 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/30 23:53:06 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/31 00:03:01 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/31 01:48:38 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-t_err	list_push_back(void* content, t_list *list)
+static t_err	_validation_image_size(t_pixel image_size)
 {
-	t_node	*node;
-
-	if (list == NULL || content == NULL)
-		return (FALSE);
-	node = (t_node *)ft_calloc(sizeof(t_node), 1);
-	if (node == NULL)
-		return (FALSE);
-	node->content = content;
-	node->next_node = NULL;
-	node->prev_node = list->tail;
-	if (node->prev_node != NULL)
-		node->prev_node->next_node = node;
-	if (list->head == NULL)
-	{
-		list->head = node;
-		list->tail = node;
-		list->cursor = node;
+	if ((1 <= image_size.x && image_size.x <= 8192)
+		&& (1 <= image_size.y && image_size.y <= 8192))
 		return (TRUE);
-	}
-	list->tail = node;
-	return (TRUE);
+	else
+		return (FALSE);
+}
+
+t_err	instance_image(void **img, void *mlx, t_pixel image_size)
+{
+	if (img == NULL
+		|| mlx == NULL
+		|| _validation_image_size(image_size) == FALSE)
+		return (FALSE);
+	*img = mlx_new_image(mlx, image_size.x, image_size.y);
+	if (*img == NULL)
+		return (FALSE);
+	else
+		return (TRUE);	
 }

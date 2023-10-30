@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:06:18 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/30 21:50:02 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/31 02:25:33 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdio.h>
 # include <math.h>
+# include <stddef.h>
 # include "mlx.h"
 # include "libft.h"
 
@@ -90,6 +91,8 @@ typedef struct s_check_parse
 
 typedef struct s_component
 {
+	char			*name;
+	void			*mlx;
 	void			*img;
 	int				width;
 	int				height;
@@ -146,6 +149,7 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	t_list			components;
 	char			**argv;
 	char			*north_path;
 	char			*south_path;
@@ -208,8 +212,7 @@ int			load_images(t_game *game);
 void		load_images_texture(t_game *game, t_art *art);
 int			map_validation(t_game *game);
 int			map_validation_is_surround(char **map, t_game *game);
-int			map_validation_dfs(size_t x, size_t y,
-				int *is_map_empty, char **test_map);
+int			map_validation_dfs(size_t x, size_t y, int *is_map_empty, char **test_map);
 void		reset_terminal_interface(t_game *game);
 
 /* srcs/render/ */
@@ -230,28 +233,21 @@ void		free_game(t_game *game);
 int			destroy_instance(t_game *game);
 
 /* srcs/utils_draw/ */
-void		draw_pixel_to_img(
-	t_component *component,
-	t_pixel pixel,
-	int color);
-void		draw_line_to_img(
-	t_component *component,
-	t_pixel first,
-	t_pixel second,
-	int color);
-void		draw_rect_to_img(
-	t_component *component,
-	t_pixel first,
-	t_pixel second,
-	int color);
-int			pipette_color_from_img(
-	t_component *component,
-	t_pixel pixel);
+void		draw_pixel_to_img(t_component *component, t_pixel pixel, int color);
+void		draw_line_to_img(t_component *component, t_pixel first, t_pixel second, int color);
+void		draw_rect_to_img(t_component *component, t_pixel first, t_pixel second, int color);
+int			pipette_color_from_img(t_component *component, t_pixel pixel);
 int			rgb8_to_int(int r, int g, int b);
 t_pixel		set_pixel(int x, int y);
 
 /* srcs/utils_image/ */
 t_err		init_component(void *mlx, t_component *comp, t_pixel img_size);
+t_node		*find_component_by_name(t_list *list, char *name);
+/* srcs/utils_list */
+t_err		list_init(t_list *list);
+t_err		list_del_one_node(t_list *list, t_node *node, void (*del)(void *));
+t_err		list_del_all_node(t_list *list, void (*del)(void *));
+t_err		list_push_back(void* content, t_list *list);
 
 /* srcs/utils_math/ */
 double		deg_to_rad(double degree);
@@ -271,5 +267,6 @@ void		init_ray_casting(t_ray *ray, t_vector pos, t_vector dir);
 /* srcs/utils_mlx_general/ */
 t_err		instance_mlx(void** mlx);
 t_err		instance_window(void **win, void *mlx, t_pixel win_size, char *title);
+t_err		instance_image(void **img, void *mlx, t_pixel image_size);
 
 #endif /* cub3d.h */

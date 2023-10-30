@@ -6,18 +6,23 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:06:21 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/30 20:57:35 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/30 23:58:22 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+void	aaa(void)
+{
+	system("leaks -q cub3D");
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	
-	game = ft_calloc(sizeof(t_game), 1);
+	atexit(aaa);
+	/* game = ft_calloc(sizeof(t_game), 1);
 	if (game == NULL)
 		return (EXIT_FAILURE);
 	if (instance_mlx(&game->mlx) == FALSE)
@@ -36,6 +41,13 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 
-	mlx_loop(game->mlx);
+	mlx_loop(game->mlx); */
+	t_list a;
+	list_init(&a);
+	list_push_back(strdup("hello"), &a);
+	list_push_back(strdup("whello"), &a);
+
+	printf("%s %s\n", (char*)a.head->content, (char*)a.tail->content);
+	list_del_all_node(&a, free);
 	return (EXIT_SUCCESS);
 }

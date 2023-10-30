@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_init.c                                        :+:      :+:    :+:   */
+/*   del_componenet.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 21:50:36 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/30 23:51:17 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/31 01:57:24 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/31 02:27:11 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-t_err	list_init(t_list *list)
+void	del_component(void *content)
 {
-	if (list == NULL)
-		return (FALSE);
-	ft_memset(list, 0, sizeof(t_list));
-	return (TRUE);
+	t_component	*temp;
+
+	if (content == NULL)
+		return ;
+	temp = (t_component*)content;
+	free(temp->name);
+	mlx_destroy_image(temp->mlx, temp->img);
+	free(temp);
 }
