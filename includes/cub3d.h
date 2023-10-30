@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 19:06:18 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/30 17:21:32 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/30 21:50:02 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,19 @@
 # define DISTANCE_UNIT 0.05
 # define MOUSE_SPEED 0.08
 
+typedef struct s_node
+{
+	void			*content;
+	struct s_node	*next_node;
+	struct s_node	*prev_node;
+}	t_node;
 
+typedef struct s_list
+{
+	t_node			*head;
+	t_node			*tail;
+	t_node			*cursor;
+}	t_list;
 
 typedef struct s_pixel
 {
@@ -63,8 +75,6 @@ typedef struct s_vector
 	double			x;
 	double			y;
 }	t_vector;
-
-
 
 typedef struct s_check_parse
 {
@@ -240,6 +250,9 @@ int			pipette_color_from_img(
 int			rgb8_to_int(int r, int g, int b);
 t_pixel		set_pixel(int x, int y);
 
+/* srcs/utils_image/ */
+t_err		init_component(void *mlx, t_component *comp, t_pixel img_size);
+
 /* srcs/utils_math/ */
 double		deg_to_rad(double degree);
 t_vector	add_vector(t_vector vector1, t_vector vector2);
@@ -255,11 +268,8 @@ int			map_int(int num, int in_max, int out_max);
 double		ray_casting(t_game *game, t_ray *ray, t_vector pos, t_vector dir);
 void		init_ray_casting(t_ray *ray, t_vector pos, t_vector dir);
 
-/* srcs/utils_window/ */
-t_err	init_window(
-	void **mlx,
-	void **win,
-	t_pixel win_size,
-	char *title);
+/* srcs/utils_mlx_general/ */
+t_err		instance_mlx(void** mlx);
+t_err		instance_window(void **win, void *mlx, t_pixel win_size, char *title);
 
 #endif /* cub3d.h */

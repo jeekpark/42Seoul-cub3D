@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/18 18:58:34 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/30 17:21:07 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/30 20:11:57 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS			=	srcs/main.c									\
 					srcs/utils_draw/pipette_color_from_img.c	\
 					srcs/utils_draw/set_pixel.c					\
 					srcs/utils_draw/rgb8_to_int.c				\
+					srcs/utils_image/init_component.c			\
 					srcs/utils_math/add_vector.c				\
 					srcs/utils_math/deg_to_rad.c				\
 					srcs/utils_math/rotate_vector.c				\
@@ -69,7 +70,9 @@ SRCS			=	srcs/main.c									\
 					srcs/utils_math/map_double.c				\
 					srcs/utils_ray_casting/ray_casting.c		\
 					srcs/utils_ray_casting/init_ray_casting.c	\
-					srcs/utils_window/init_window.c
+					srcs/utils_mlx_general/instance_mlx.c		\
+					srcs/utils_mlx_general/instance_window.c
+					
 
 OBJS			=	$(SRCS:.c=.o)
 
